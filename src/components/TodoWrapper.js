@@ -1,6 +1,10 @@
+import TodoForm from "./TodoForm";
+
 const TodoWrapper = () => {
     return (
-        <div>TodoWrapper</div>
+        <div className='TodoWrapper'>
+            <TodoForm />
+        </div>
     )
 }
 export default TodoWrapper;
