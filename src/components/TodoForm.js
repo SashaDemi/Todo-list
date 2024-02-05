@@ -9,10 +9,12 @@ const TodoForm = ({addTodo}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addTodo(value);
+        setValue('');
     }
     return (
-        <form className='TodoForm' onSubmit={handleSubmit}>
+        <form className='todo-form' onSubmit={handleSubmit}>
             <input type='text' className='todo-input'
+                   value={value}
                    placeholder='Write your task'
                 // Update the value state.
                    onChange={(e) => setValue(e.target.value)}/>
