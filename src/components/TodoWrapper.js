@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import Todo from "./Todo";
 // using the UUID library to generate a unique ID number.
-const uniqueId = uuidv4();
+uuidv4();
 
 const TodoWrapper = () => {
     const [todos, setTodos] = useState([])
@@ -12,7 +12,7 @@ const TodoWrapper = () => {
         // using spread operator to make copy
         const newTodos = [...todos,
             {
-                id: uniqueId,
+                id: uuidv4(),
                 task: todo,
                 completed: false,
                 isEditing: false
@@ -21,11 +21,24 @@ const TodoWrapper = () => {
 
         console.log(newTodos)
     }
+
+    // this function is needed to reload state by id, then pass to Todo component.
+
+    const toggleComplete = (id) => {
+        setTodos(todos.map(todo => {
+            if (todo.id === id) {
+                return {...todo, completed: !todo.completed};
+            } else {
+                return todo;
+            }
+        }));
+    }
     return (
         <div className='todo-wrapper'>
             <TodoForm addTodo={addTodo}/>
             {todos.map((todo, index) => (
-                <Todo task={todo} key={index} />
+                <Todo task={todo} key={index}
+                toggleComplete={toggleComplete}/>
             ))}
         </div>
     )

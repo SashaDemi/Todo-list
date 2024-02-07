@@ -11,6 +11,7 @@ const TodoForm = ({addTodo}) => {
         addTodo(value);
         setValue('');
     }
+
     return (
         <form className='todo-form' onSubmit={handleSubmit}>
             <input type='text' className='todo-input'
