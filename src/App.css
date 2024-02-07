@@ -65,3 +65,14 @@ body {
     height: 23px;
     margin-right: 10px;
 }
+
+.in-completed {
+    color: #fff;
+    cursor: pointer;
+}
+
+.completed {
+    color: #c5aeff;
+    text-decoration: line-through;
+    cursor: pointer;
+}
