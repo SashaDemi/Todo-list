@@ -58,12 +58,14 @@ body {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .trash-image {
     width: 23px;
     height: 23px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .in-completed {
