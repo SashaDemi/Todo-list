@@ -2,6 +2,7 @@ import TodoForm from './TodoForm';
 import {useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import Todo from "./Todo";
+import EditTodoForm from "./EditTodoForm";
 // using the UUID library to generate a unique ID number.
 uuidv4();
 
@@ -18,8 +19,6 @@ const TodoWrapper = () => {
                 isEditing: false
             }]
         setTodos(newTodos);
-
-        console.log(newTodos)
     }
 
     // this function is needed to reload state by id, then pass to Todo component.
@@ -37,13 +36,39 @@ const TodoWrapper = () => {
     const deleteTodo = (id) => {
         setTodos(todos.filter(todo => todo.id !== id))
     };
+// this function return isEditing flag
+    const editTodo = (id) => {
+        setTodos(todos.map(todo => {
+            if (todo.id === id) {
+                return {...todo, isEditing: !todo.isEditing};
+            } else {
+                return todo;
+            }
+        }))
+    }
+
+    const editTask = (task, id) => {
+        setTodos(todos.map(todo => {
+            if (todo.id === id) {
+                return {...todo, task, isEditing: !todo.isEditing};
+            } else {
+                return todo;
+            }
+        }))
+    }
     return (
         <div className='todo-wrapper'>
+            <h1 className='todo-list-title'>Todo list</h1>
             <TodoForm addTodo={addTodo}/>
-            {todos.map((todo, index) => (
-                <Todo task={todo} key={index}
-                toggleComplete={toggleComplete}
-                deleteTodo={deleteTodo}/>
+            {todos.map((todo, key) => (
+                todo.isEditing ? (
+                    <EditTodoForm editTodo={editTask} task={todo} key={todo.id}/>
+                    ) : (
+                    <Todo task={todo} key={todo.id}
+                          toggleComplete={toggleComplete}
+                          deleteTodo={deleteTodo}
+                          editTodo={editTodo}/>
+                    )
             ))}
         </div>
     )

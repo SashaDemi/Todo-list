@@ -3,6 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .App {
@@ -77,4 +78,8 @@ body {
     color: #c5aeff;
     text-decoration: line-through;
     cursor: pointer;
+}
+
+.todo-list-title {
+    color: #dae0f5;
 }
