@@ -3,6 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .App {
@@ -58,12 +59,14 @@ body {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .trash-image {
     width: 23px;
     height: 23px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .in-completed {
@@ -75,4 +78,8 @@ body {
     color: #c5aeff;
     text-decoration: line-through;
     cursor: pointer;
+}
+
+.todo-list-title {
+    color: #dae0f5;
 }
