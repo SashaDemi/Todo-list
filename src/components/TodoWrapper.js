@@ -1,5 +1,5 @@
 import TodoForm from './TodoForm';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import Todo from "./Todo";
 import EditTodoForm from "./EditTodoForm";
@@ -8,6 +8,13 @@ uuidv4();
 
 const TodoWrapper = () => {
     const [todos, setTodos] = useState([])
+
+    useEffect(() => {
+        const storedTodos = localStorage.getItem('todos');
+        if (storedTodos) {
+            setTodos(JSON.parse(storedTodos));
+        }
+    }, []);
 
     const addTodo = (todo) => {
         // using spread operator to make copy
@@ -19,6 +26,7 @@ const TodoWrapper = () => {
                 isEditing: false
             }]
         setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
     }
 
     // this function is needed to reload state by id, then pass to Todo component.
